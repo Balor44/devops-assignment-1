@@ -1,24 +1,31 @@
 name: CI
 on: [push, pull_request]
+
+
+defaults:
+  run:
+    working-directory: ./assignment-3
+
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: chmod +x assignment-3/scripts/*.sh assignment-3/app/*.sh assignment-3/tests/*.sh
-      - run: ./assignment-3/scripts/lint.sh
+      - run: chmod +x scripts/*.sh app/*.sh tests/*.sh
+      - run: ./scripts/lint.sh
   test:
     needs: validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: chmod +x assignment-3/app/*.sh assignment-3/tests/*.sh
-      - run: ./assignment-3/tests/test.sh
+      - run: chmod +x app/*.sh tests/*.sh
+      - run: ./tests/test.sh
   docker:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: chmod +x assignment-3/scripts/*.sh
-      - run: ./assignment-3/scripts/build.sh
+      - run: chmod +x scripts/*.sh
+      - run: ./scripts/build.sh
 
