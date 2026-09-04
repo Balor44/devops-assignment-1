@@ -29,4 +29,4 @@ case "$1" in
     check-port) shift; check_port "$@" ;;
     help|"") show_help ;;
     *) echo "Unknown command: $1" >&2; show_help; exit 2 ;;
-es-ac
+esac
