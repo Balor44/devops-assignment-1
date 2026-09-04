@@ -1,5 +1,11 @@
 #!/bin/bash
 
+LOG_FILE="$(dirname "$0")/logs/toolkit.log"
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+}
+
+log "System information check executed by $(whoami) on $(hostname)"
 echo "=== System Information ==="
 echo "Hostname: $(hostname)"
 echo "Current user: $(whoami)"
